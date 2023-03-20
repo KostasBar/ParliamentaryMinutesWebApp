@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>Parliamentary Minutes WebApp</title>
+<style>
+    body {
+        background-color: lightgrey;
+    }
+    th {
+        margin-left: 30px;
+        color:black;
+        border:solid;
+        width:100px;
+    }
+</style>
+<head>
+</head>
+<body>
+<h1>Search</h1>
+<div>Search the term you want here</div>
+<form action="/search" method="get">
+  <input type="text" name="search_query">
+  <input type="submit" value="Search">
+</form>
+<div><h1>Results</h1></div>
+<div>The term has been found here</div>
+<table id="myTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+<!--    <script>-->
+<!--        fetch('/products')-->
+<!--          .then(response => response.json())-->
+<!--          .then(data => {-->
+<!--            createTableRows(data);-->
+<!--          });-->
+
+<!--        function createTableRows(data) {-->
+<!--          const tableBody = document.querySelector('#myTable tbody');-->
+
+<!--          data.forEach(item => {-->
+<!--            const row = document.createElement('tr');-->
+
+<!--            const idCell = document.createElement('td');-->
+<!--            idCell.textContent = item.id;-->
+<!--            row.appendChild(idCell);-->
+
+<!--            const nameCell = document.createElement('td');-->
+<!--            nameCell.textContent = item.name;-->
+<!--            row.appendChild(nameCell);-->
+
+<!--            const descriptionCell = document.createElement('td');-->
+<!--            descriptionCell.textContent = item.description;-->
+<!--            row.appendChild(descriptionCell);-->
+
+<!--            const priceCell = document.createElement('td');-->
+<!--            priceCell.textContent = item.price;-->
+<!--            row.appendChild(priceCell);-->
+
+<!--            tableBody.appendChild(row);-->
+<!--          });-->
+<!--        }-->
+<!--    </script>-->
+</body>
+</html>

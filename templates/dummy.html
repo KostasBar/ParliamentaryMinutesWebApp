@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Google Drive Images</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 1em;
+		}
+
+		input[type=text] {
+			font-size: 1em;
+			padding: 0.5em;
+			width: 80%;
+			margin: 1em auto;
+			display: block;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			display: block;
+			margin: 1em auto;
+		}
+
+		.error {
+			color: red;
+			margin: 1em auto;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Search Google Drive Images</h1>
+	</header>
+
+	<main>
+		<form action="/dummy" method="GET">
+		  <input type="text" name="search">
+		  <input type="submit" value="Search">
+		</form>
+		{% if image_url %}
+			<h2>Search results for "{{ search_term }}":</h2>
+			<img src="{{ image_url }}" alt="{{ search_term }}">
+		{% endif %}
+
+		{% if error_message %}
+			<p class="error">{{ error_message }}</p>
+		{% endif %}
+	</main>
+</body>
+</html>

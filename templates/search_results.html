@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<title>Search Results</title>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	{% if table != '' %}
+		body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          overflow: visible;
+        }
+
+        .table {
+          flex: 1;
+          overflow: auto;
+          width: calc(100% - 25%);
+        }
+
+        .bar {
+          flex: 0 0 25%;
+          padding: 1em;
+          overflow: visible;
+        }
+    {% endif %}
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 1em;
+		}
+
+		input[type=text] {
+			font-size: 1em;
+			padding: 0.5em;
+			width: 80%;
+			margin: 1em auto;
+			display: block;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			display: block;
+			margin: 1em auto;
+		}
+
+		.error {
+			color: red;
+			margin: 1em auto;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+<div class="table">
+    {{table|safe}}
+</div>
+<div class="bar">
+    <form action="/search" method="GET" target="_blank">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+    {% if image_url %}
+    <h2>Search results for "{{ cell_value }}":</h2>
+    <img src="{{ image_url }}" alt="{{ cell_value }}">
+    {% endif %}
+
+    {% if error_message %}
+    <p class="error">{{ error_message }}</p>
+    {% endif %}
+</div>
+
+ <script>
+ {% if table != '' %}
+    var myButton = document.getElementById("seePage");
+    myButton.addEventListener("click", function() {
+      var url = "/search";
+      var buttonText = this.value;
+      var data = new URLSearchParams();
+      data.append("buttonText", buttonText);
+      fetch(url, {
+        method: "POST",
+        body: data
+      })
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(text) {
+        console.log(text);
+      });
+    });
+    {% endif %}
+  </script>
+</body>
+</html>
